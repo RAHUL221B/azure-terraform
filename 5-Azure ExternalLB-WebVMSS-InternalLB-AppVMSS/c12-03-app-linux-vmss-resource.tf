@@ -20,7 +20,7 @@ CUSTOM_DATA
 
 # Resource: Azure Linux Virtual Machine Scale Set - App1
 resource "azurerm_linux_virtual_machine_scale_set" "app_vmss" {
-  name                = "${local.resource_name_prefix}-app-vmss"
+  name                = "${local.prefix}-app-vmss"
   #computer_name_prefix = "vmss-app1" # if name argument is not valid one for VMs, we can use this for VM Names
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location

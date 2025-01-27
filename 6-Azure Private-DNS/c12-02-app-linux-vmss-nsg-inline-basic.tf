@@ -1,6 +1,6 @@
 # Create Network Security Group using Terraform Dynamic Blocks
 resource "azurerm_network_security_group" "app_vmss_nsg" {
-  name                = "${local.resource_name_prefix}-app-vmss-nsg"
+  name                = "${local.prefix}-app-vmss-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
