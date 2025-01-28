@@ -20,7 +20,7 @@ terraform {
     resource_group_name   = "terraform-storage-rg"
     storage_account_name  = "terraformstate201"
     container_name        = "tfstatefiles"
-    key                   = "project-1-eastus2-terraform.tfstate"
+    key                   = "project-2-westus2-terraform.tfstate"
   }  
 }
 

@@ -20,8 +20,8 @@ CUSTOM_DATA
 
 
 # Resource: Azure Linux Virtual Machine Scale Set - App1
-resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
-  name = "${local.prefix}-web-vmss"
+resource "azurerm_linux_virtual_machine_scale_set" "app1_web_vmss" {
+  name = "${local.prefix}-app1-web-vmss"
   #computer_name_prefix = "vmss-app1" # if name argument is not valid one for VMs, we can use this for our VM Names
   resource_group_name = azurerm_resource_group.myrg.name 
   location            = azurerm_resource_group.myrg.location 
@@ -51,11 +51,11 @@ resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
   network_interface {
     name = "web-vmss-nic"
     primary = "true"
-    network_security_group_id = azurerm_network_security_group.web_vmss_nsg.id 
+    network_security_group_id = azurerm_network_security_group.app1_web_vmss_nsg.id 
     ip_configuration {
       name = "internal"
       primary = true
-      subnet_id = azurerm_subnet.websubnet.id 
+      subnet_id = azurerm_subnet.webtier_subnet.id 
       load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.web_lb_backend_address_pool.id]
     }
   }

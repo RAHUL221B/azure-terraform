@@ -19,11 +19,11 @@ Resource: azurerm_monitor_autoscale_setting
     2. Scale-Up Rule: Decrease VMs by 1 when LB SYN Count is less than 10 Connections (Average)    
 */
 
-resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
-  name                = "${local.prefix}-web-vmss-autoscale-profiles"
+resource "azurerm_monitor_autoscale_setting" "app1_web_vmss_autoscale" {
+  name                = "${local.prefix}-app1-web-vmss-autoscale-profiles"
   resource_group_name = azurerm_resource_group.myrg.name
   location            = azurerm_resource_group.myrg.location
-  target_resource_id  = azurerm_linux_virtual_machine_scale_set.web_vmss.id
+  target_resource_id  = azurerm_linux_virtual_machine_scale_set.app1_web_vmss.id
   # Notification  
   notification {
       email {
@@ -57,7 +57,7 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
       }            
       metric_trigger {
         metric_name        = "Percentage CPU"
-        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web_vmss.id
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.app1_web_vmss.id
         metric_namespace   = "microsoft.compute/virtualmachinescalesets"        
         time_grain         = "PT1M"
         statistic          = "Average"
@@ -78,7 +78,7 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
       }        
       metric_trigger {
         metric_name        = "Percentage CPU"
-        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web_vmss.id
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.app1_web_vmss.id
         metric_namespace   = "microsoft.compute/virtualmachinescalesets"                
         time_grain         = "PT1M"
         statistic          = "Average"
@@ -101,7 +101,7 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
       }            
       metric_trigger {
         metric_name        = "Available Memory Bytes"
-        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web_vmss.id
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.app1_web_vmss.id
         metric_namespace   = "microsoft.compute/virtualmachinescalesets"        
         time_grain         = "PT1M"
         statistic          = "Average"
@@ -122,7 +122,7 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
       }        
       metric_trigger {
         metric_name        = "Available Memory Bytes"
-        metric_resource_id = azurerm_linux_virtual_machine_scale_set.web_vmss.id
+        metric_resource_id = azurerm_linux_virtual_machine_scale_set.app1_web_vmss.id
         metric_namespace   = "microsoft.compute/virtualmachinescalesets"                
         time_grain         = "PT1M"
         statistic          = "Average"
@@ -134,7 +134,7 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
     }
 ###########  END: Available Memory Bytes Metric Rules  ###########  
 
-
+/*
 ###########  START: LB SYN Count Metric Rules - Just to Test scale-in, scale-out  ###########    
   ## Scale-Out 
     rule {
@@ -176,7 +176,8 @@ resource "azurerm_monitor_autoscale_setting" "web_vmss_autoscale" {
         threshold          = 10
       }
     }
-###########  END: LB SYN Count Metric Rules  ###########    
+###########  END: LB SYN Count Metric Rules  ###########  
+*/  
   } # End of Profile-1
 
 
